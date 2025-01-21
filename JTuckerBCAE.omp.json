@@ -1,0 +1,154 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+upgrade:
+  source: cdn
+  interval: 168h
+  auto: false
+  notice: false
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - leading_diamond: ╭─
+    template: " {{ if .WSL }}WSL at {{ end }}{{.Icon}} \ue0b1"
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: os
+    style: diamond
+  - properties:
+      always_enabled: true
+      style: austin
+      threshold: 500.0
+    template: " {{ .FormattedMs }} \ue0b1"
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: executiontime
+    style: powerline
+  - template: " \uf0e7 "
+    foreground: "#26C6DA"
+    background: "#292929"
+    type: root
+    style: plain
+  - properties:
+      style: full
+      trailing_diamond: 
+    template: " {{ .Path }} "
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: path
+    style: diamond
+  - foreground: "#D4E157"
+    background: "#292929"
+    type: git
+    style: plain
+  - properties:
+      charged_icon: "\uf240 "
+      charging_icon: "\ueb2d "
+      discharging_icon: "\ueb2d "
+      text: 
+    template: " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }} \ue0b1"
+    foreground: "#26C6DA"
+    background: "#292929"
+    type: battery
+    style: powerline
+    foreground_templates:
+    - "{{ if eq \"Full\" .State.String }}#292929{{ end }}"
+    - "{{ if eq \"Charging\" .State.String }}#40c4ff{{ end }}"
+    - "{{ if eq \"Discharging\" .State.String }}#fb7e14{{ end }}"
+  - properties:
+      always_enabled: true
+      display_exit_code: true
+    trailing_diamond: 
+    template: " {{ if gt .Code 0 }}\uf00d {{ reason .Code }}{{ else }}\uf00c{{ end }} "
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: status
+    style: diamond
+    background_templates:
+    - "{{ if gt .Code 0 }}#292929{{ end }}"
+- type: prompt
+  alignment: right
+  segments:
+  - leading_diamond: 
+    template: " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ .HostName }} <#fb7e14>\ue0b3</> "
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: session
+    style: diamond
+  - properties:
+      time_format: 15:04:05, _2
+    trailing_diamond: 
+    template: "{{ .CurrentDate | date .Format }} \uf073 "
+    foreground: "#fb7e14"
+    background: "#292929"
+    type: time
+    style: diamond
+- type: prompt
+  alignment: left
+  segments:
+  - type: node
+    properties:
+      fetch_version: true
+    template: " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}  "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: python
+    properties:
+      display_mode: files
+    template: " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}.venv \ue0b1 {{ end }}{{ .Full }}{{ end }}  "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: go
+    properties:
+      fetch_version: true
+    template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue624 "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: julia
+    properties:
+      fetch_version: true
+    template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue624 "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: ruby
+    properties:
+      fetch_version: true
+    template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue791 "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: aws
+    properties:
+      fetch_version: true
+    template: " {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} \ue7ad "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  - type: root
+    properties:
+      fetch_version: true
+    template: " \uf0ad "
+    leading_diamond: ╰─
+    trailing_diamond: 
+    foreground: "#292929"
+    background: "#fb7e14"
+    style: diamond
+  newline: true
+version: 3
+final_space: true

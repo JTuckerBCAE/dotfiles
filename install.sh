@@ -9,7 +9,7 @@ export TZ='Australia/Adelaide'
 # Install Oh My Posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
 oh-my-posh font install meslo
-cp ./*.omp.json ~
+cp ./*.omp.* ~
 # apt install -y git exa
 
 # endregion System Setup

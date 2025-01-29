@@ -70,7 +70,12 @@ blocks:
   alignment: right
   segments:
   - leading_diamond: 
-    template: " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ .HostName }} <#fb7e14>\ue0b3</> "
+    type: python
+    template: " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ end }} <#fb7e14>\ue0b3</> "
+    style: diamond
+    foreground: "#fb7e14"
+    background: "#292929"
+  - template: "{{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ .HostName }} <#fb7e14>\ue0b3</> "
     foreground: "#fb7e14"
     background: "#292929"
     type: session
